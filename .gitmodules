@@ -588,3 +588,7 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/lilypond"]
+	path = repos/lilypond
+	url = https://github.com/nwhetsell/tree-sitter-lilypond
+	ignore = dirty

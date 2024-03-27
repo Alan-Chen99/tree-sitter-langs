@@ -355,7 +355,7 @@ from the current state of the grammar repo, without cleanup."
         (let* ((path (or (car-safe path-spec) path-spec))
                (lang-symbol (or (cdr-safe path-spec) lang-symbol))
                (default-directory (file-name-as-directory (concat dir path))))
-          (tree-sitter-langs--call "tree-sitter" "generate")
+          (tree-sitter-langs--call "tree-sitter" "generate" "--abi" "13")
           (cond
            ((and (memq system-type '(gnu/linux))
                  (file-exists-p "src/scanner.cc"))
