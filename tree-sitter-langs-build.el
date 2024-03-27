@@ -390,7 +390,7 @@ from the current state of the grammar repo, without cleanup."
                       "src/parser.c"
                       "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
                       "-target" target))))
-           ((memq system-type '(berkeley-unix))
+           (t
             (cond
              ((file-exists-p "src/scanner.cc")
               (tree-sitter-langs--call
