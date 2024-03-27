@@ -160,8 +160,11 @@
 ;; "Contexts" may have internal highlighting -> low priority.
 
 (comment) @comment
-(string) @string
+
 (escape_sequence) @escape
+(string_content) @string
+(string_start) @string
+(string_end) @string
 
 (interpolation
  "{" @punctuation.special
