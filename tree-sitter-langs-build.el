@@ -295,6 +295,7 @@ If VERSION and OS are not spcified, use the defaults of
   (format "tree-sitter-grammars-%s-%s.tar%s"
           os version ext))
 
+;;;###autoload
 (defun tree-sitter-langs-compile (lang-symbol &optional clean target)
   "Download and compile the grammar for LANG-SYMBOL.
 This function requires git and tree-sitter CLI.
@@ -595,6 +596,7 @@ If KEEP-BUNDLE is non-nil, the downloaded bundle file is not deleted after insta
           (tree-sitter-langs-install-grammars skip-if-installed latest-tag os keep-bundle))
       (message "Failed to retrieve the latest version."))))
 
+;;;###autoload
 (defun tree-sitter-langs--copy-query (lang-symbol &optional force)
   "Copy highlights.scm file of LANG-SYMBOL to `tree-sitter-langs--queries-dir'.
 This assumes the repo has already been set up, for example by

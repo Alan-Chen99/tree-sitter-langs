@@ -41,7 +41,9 @@
 (require 'tree-sitter-load)
 (require 'tree-sitter-hl)
 
-(require 'tree-sitter-langs-build)
+(require 'tree-sitter-langs-autoloads nil t)
+(eval-when-compile
+  (require 'tree-sitter-langs-build))
 
 (eval-when-compile
   (require 'pcase))
@@ -60,7 +62,7 @@
   :group 'tree-sitter)
 
 (defvar tree-sitter-langs--testing)
-(eval-and-compile
+(eval-when-compile
   (unless (bound-and-true-p tree-sitter-langs--testing)
     (tree-sitter-langs-install-grammars :skip-if-installed)))
 
@@ -86,7 +88,7 @@ See `tree-sitter-langs-repos'."
 ;;;###autoload
 (defun tree-sitter-langs--init-load-path (&rest _args)
   "Add the directory containing compiled grammars to `tree-sitter-load-path'."
-  (cl-pushnew (tree-sitter-langs--bin-dir) tree-sitter-load-path
+  (cl-pushnew (eval-when-compile (tree-sitter-langs--bin-dir)) tree-sitter-load-path
               :test #'string-equal)
   (advice-remove 'tree-sitter-load #'tree-sitter-langs--init-load-path))
 
@@ -233,7 +235,7 @@ See `tree-sitter-langs-repos'."
 If MODE is non-nil, return the file containing additional MODE-specfic patterns
 instead. An example is `terraform-mode'-specific highlighting patterns for HCL."
   (concat (file-name-as-directory
-           (concat tree-sitter-langs--queries-dir
+           (concat (eval-when-compile tree-sitter-langs--queries-dir)
                    (symbol-name lang-symbol)))
           (if mode
               (format "highlights.%s.scm" mode)
