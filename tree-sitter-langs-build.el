@@ -30,7 +30,7 @@
 (declare-function magit-rev-parse "magit-git" (&rest args))
 
 (defconst tree-sitter-langs--dir
-  (file-name-directory (locate-library "tree-sitter-langs.el"))
+  (file-name-directory (file-truename (locate-library "tree-sitter-langs.el")))
   "The directory where the library `tree-sitter-langs' is located.")
 
 ;; TODO: Separate build-time settings from run-time settings.
